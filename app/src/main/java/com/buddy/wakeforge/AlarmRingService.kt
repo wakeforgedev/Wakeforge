@@ -48,7 +48,11 @@ class AlarmRingService : Service() {
         val title = intent?.getStringExtra(AlarmScheduler.EXTRA_TITLE) ?: "Alarm"
 
         val fullScreenIntent = Intent(this, AlarmActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            // Explicit "this." matters here — this lambda's enclosing function
+            // (onStartCommand) also has a parameter named "flags", and without
+            // qualifying it, Kotlin resolves the assignment to that read-only
+            // parameter instead of this Intent's own settable flags property.
+            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             putExtras(intent?.extras ?: android.os.Bundle())
         }
         val fullScreenPendingIntent = PendingIntent.getActivity(
