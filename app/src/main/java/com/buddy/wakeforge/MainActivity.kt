@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.buddy.riseup.databinding.ActivityMainBinding
-import com.buddy.riseup.databinding.DialogAddAlarmBinding
+import com.buddy.wakeforge.databinding.ActivityMainBinding
+import com.buddy.wakeforge.databinding.DialogAddAlarmBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.Calendar
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         if (!AlarmScheduler.canScheduleExactAlarms(this)) {
             Toast.makeText(
                 this,
-                "Please allow RiseUp to schedule exact alarms so your alarms fire on time.",
+                "Please allow Wakeforge to schedule exact alarms so your alarms fire on time.",
                 Toast.LENGTH_LONG
             ).show()
             if (Build.VERSION.SDK_INT >= 31) {

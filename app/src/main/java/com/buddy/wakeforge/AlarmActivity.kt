@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.Manifest
 import android.animation.ObjectAnimator
@@ -19,7 +19,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import com.buddy.riseup.databinding.ActivityAlarmBinding
+import com.buddy.wakeforge.databinding.ActivityAlarmBinding
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

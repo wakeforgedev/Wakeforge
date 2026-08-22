@@ -1,11 +1,11 @@
-# RiseUp — Locked-in pricing & plan structure (v1)
+# Wakeforge — Locked-in pricing & plan structure (v1)
 
 This replaces the pricing *range* in `MONETIZATION.md` with an actual decision to launch
 with. Treat it as the starting number to test with real testers, not something carved in
 stone — but you need one number to put in Play Console, and guessing forever isn't a
 strategy either. Here it is, with the reasoning, so you can defend it or change it later.
 
-## The plan: Free vs. RiseUp Pro
+## The plan: Free vs. Wakeforge Pro
 
 **Free — forever, not a trial:**
 - Unlimited alarms, all three categories (Student / Gym / General)
@@ -16,14 +16,14 @@ This has to be genuinely good on its own. The entire premium pitch depends on pe
 already having formed the daily habit before you ever ask them to pay — see
 `MONETIZATION.md`'s Stage 1 reasoning. A stingy free tier kills that before it starts.
 
-**RiseUp Pro — the paid tier:**
+**Wakeforge Pro — the paid tier:**
 - The Camera mission (all duration options, 1 min–1 hour)
 - All difficulty tiers
 - First access to anything added later — content-aware Student/Gym missions, adaptive
   difficulty, age-tier presets (see the roadmap discussion) all land here by default
 
 Camera is the right thing to gate: it's the most engineering-intensive feature, the one
-that took real work to build, and the one that actually differentiates RiseUp from a
+that took real work to build, and the one that actually differentiates Wakeforge from a
 generic alarm app. Gating Math/Shake instead would just make the free app annoying,
 which drives uninstalls, not conversions.
 
@@ -67,7 +67,7 @@ You do **not** need a company or GST number to start. Concretely:
   (which is what selling an app subscription is) is ₹20 lakh/year turnover (₹10 lakh in a
   few special-category states) — not the ₹40 lakh figure you may see quoted, which is for
   goods sellers. Below that threshold, GST registration generally isn't mandatory. Given
-  RiseUp has zero paying users yet, you're nowhere near that line, so this isn't a
+  Wakeforge has zero paying users yet, you're nowhere near that line, so this isn't a
   blocker to launching.
 - **One real caveat, not a guess:** there's a separate, less common rule that can make GST
   registration mandatory *regardless of turnover* for certain sales made through an

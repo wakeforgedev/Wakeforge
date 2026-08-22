@@ -26,12 +26,12 @@
     <uses-feature android:name="android.hardware.camera.any" android:required="false" />
 
     <application
-        android:name=".RiseUpApp"
+        android:name=".WakeforgeApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
-        android:theme="@style/Theme.RiseUp"
+        android:theme="@style/Theme.Wakeforge"
         android:supportsRtl="true">
 
         <activity
@@ -50,7 +50,7 @@
             android:excludeFromRecents="true"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
-            android:theme="@style/Theme.RiseUp.Alarm" />
+            android:theme="@style/Theme.Wakeforge.Alarm" />
 
         <receiver
             android:name=".AlarmReceiver"

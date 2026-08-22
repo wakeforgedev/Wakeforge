@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.app.Application
 import com.google.android.material.color.DynamicColors
@@ -9,7 +9,7 @@ import com.google.android.material.color.DynamicColors
  * of looking like every other app's fixed brand color. Falls back to the
  * static palette in themes.xml on older Android versions automatically.
  */
-class RiseUpApp : Application() {
+class WakeforgeApp : Application() {
     override fun onCreate() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)

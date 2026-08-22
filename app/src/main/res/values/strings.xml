@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RiseUp</string>
+    <string name="app_name">Wakeforge</string>
     <string name="add_alarm">Add alarm</string>
     <string name="title_hint">What\'s this for? (e.g. Leg day, French vocab)</string>
     <string name="category">Category</string>

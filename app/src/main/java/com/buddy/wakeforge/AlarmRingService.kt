@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -28,7 +28,7 @@ class AlarmRingService : Service() {
     private var vibrator: Vibrator? = null
 
     companion object {
-        const val CHANNEL_ID = "riseup_alarm_channel"
+        const val CHANNEL_ID = "wakeforge_alarm_channel"
         const val NOTIFICATION_ID = 1001
         var isRinging = false
             private set

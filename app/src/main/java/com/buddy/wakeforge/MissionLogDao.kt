@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import androidx.room.Dao
 import androidx.room.Insert

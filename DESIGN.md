@@ -1,10 +1,10 @@
-# RiseUp Design Notes — UI/UX pass
+# Wakeforge Design Notes — UI/UX pass
 
 ## What changed in this pass
 
 **1. Material 3 + Material You dynamic color.**
 The app now runs on `Theme.Material3.DayNight` instead of the older Material Components
-theme, and `RiseUpApp.kt` applies Android's dynamic color system across every screen. On
+theme, and `WakeforgeApp.kt` applies Android's dynamic color system across every screen. On
 Android 12+, that means the app's accent colors adapt to each user's actual wallpaper/
 system theme — it stops looking like a fixed corporate palette and starts looking
 personalized, which is closer to what this audience expects from a modern app (this is

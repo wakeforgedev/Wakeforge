@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.buddy.riseup'
+    namespace 'com.buddy.wakeforge'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.buddy.riseup"
+        applicationId "com.buddy.wakeforge"
         minSdk 26
         targetSdk 34
         versionCode 2
@@ -50,7 +50,7 @@ dependencies {
     ksp 'androidx.room:room-compiler:2.6.1'
 
     // SQLCipher: encrypts the actual database file at rest (AES-256). Without this,
-    // anyone with root or a rooted-device backup can read riseup.db as plain SQLite.
+    // anyone with root or a rooted-device backup can read wakeforge.db as plain SQLite.
     implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
     implementation 'androidx.sqlite:sqlite-ktx:2.4.0'
 

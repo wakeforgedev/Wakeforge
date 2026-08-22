@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

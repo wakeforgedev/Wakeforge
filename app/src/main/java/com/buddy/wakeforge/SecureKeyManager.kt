@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.content.Context
 import android.util.Base64
@@ -27,7 +27,7 @@ import java.security.SecureRandom
  */
 object SecureKeyManager {
 
-    private const val PREFS_FILE_NAME = "riseup_secure_prefs"
+    private const val PREFS_FILE_NAME = "wakeforge_secure_prefs"
     private const val KEY_DB_PASSPHRASE = "db_passphrase_b64"
     private const val PASSPHRASE_BYTES = 32 // 256-bit
 

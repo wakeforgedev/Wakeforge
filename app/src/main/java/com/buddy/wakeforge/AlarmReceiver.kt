@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.content.BroadcastReceiver
 import android.content.Context

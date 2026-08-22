@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.content.Context
 import androidx.room.Database
@@ -31,7 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
             val passphrase = SecureKeyManager.getOrCreateDatabasePassphrase(appContext)
             val factory = SupportFactory(passphrase)
 
-            return Room.databaseBuilder(appContext, AppDatabase::class.java, "riseup.db")
+            return Room.databaseBuilder(appContext, AppDatabase::class.java, "wakeforge.db")
                 .openHelperFactory(factory) // <- this is what actually encrypts the file on disk (SQLCipher/AES-256)
                 // No real users yet on this MVP, so a schema bump can safely wipe local
                 // data rather than write a migration. Replace with a real Migration

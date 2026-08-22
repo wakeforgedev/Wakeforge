@@ -1,4 +1,4 @@
-# RiseUp — Monetization Plan
+# Wakeforge — Monetization Plan
 
 ## The honest data first
 
@@ -14,7 +14,7 @@ Subscription Apps report (115,000+ apps) found a stark gap between two common ap
   trials under 4 days.
 
 That data argues hard for paywalling early. But it's measuring apps that already know
-people want them. RiseUp doesn't have that yet — nobody has used the streak mechanic, the
+people want them. Wakeforge doesn't have that yet — nobody has used the streak mechanic, the
 Camera mission, or any of it in the real world. Paywalling something unvalidated just
 means fewer people ever find out whether it works. So the recommendation below is
 deliberately staged rather than jumping straight to the highest-converting model.

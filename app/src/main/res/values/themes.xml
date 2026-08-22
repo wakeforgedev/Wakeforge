@@ -1,14 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.RiseUp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Wakeforge" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/brand_primary</item>
         <item name="colorOnPrimary">@color/text_on_dark</item>
         <item name="colorSecondary">@color/gym_tint</item>
         <item name="colorTertiary">@color/general_tint</item>
-        <!-- Material You (DynamicColors, see RiseUpApp.kt) overrides these on Android 12+
+        <!-- Material You (DynamicColors, see WakeforgeApp.kt) overrides these on Android 12+
              with colors derived from the user's wallpaper; this is just the static fallback. -->
     </style>
 
-    <style name="Theme.RiseUp.Alarm" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Wakeforge.Alarm" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/alarm_background</item>
         <item name="colorPrimary">@color/brand_primary</item>
         <item name="android:windowIsTranslucent">false</item>

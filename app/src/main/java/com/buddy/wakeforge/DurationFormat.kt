@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 /** Shared by the add-alarm dialog and the alarm list so "60 min" reads as "1 hour" everywhere. */
 fun formatDurationMinutes(minutes: Int): String =

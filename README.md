@@ -1,4 +1,4 @@
-# RiseUp — Category-Based Wake-Up Mission Alarm (Android MVP)
+# Wakeforge — Category-Based Wake-Up Mission Alarm (Android MVP)
 
 This is a real, working Android Studio project — not a mockup. It implements the Phase 1 MVP
 from the feasibility plan: a reliable alarm engine, two mission types (Math and Shake),
@@ -22,7 +22,7 @@ Studio manages the SDK and Gradle for you automatically).
 ## How to open and run it
 
 1. Install [Android Studio](https://developer.android.com/studio) (free) if you don't have it.
-2. Open Android Studio → **Open** → select this `RiseUp` folder.
+2. Open Android Studio → **Open** → select this `Wakeforge` folder.
 3. Android Studio will offer to generate the Gradle wrapper and sync the project automatically
    — accept it. First sync can take a few minutes as it downloads the Android SDK components.
 4. If Android Studio prompts to **upgrade the Android Gradle Plugin**, accept that too — this
@@ -74,7 +74,7 @@ Studio manages the SDK and Gradle for you automatically).
 ## Project structure
 
 ```
-app/src/main/java/com/buddy/riseup/
+app/src/main/java/com/buddy/wakeforge/
   AlarmEvent.kt        the data model (title, time, category, mission, difficulty)
   AlarmDao.kt           Room queries
   AppDatabase.kt        Room database singleton — now opened via SQLCipher (see SECURITY.md)
@@ -92,7 +92,7 @@ app/src/main/java/com/buddy/riseup/
   AlarmActivity.kt        the full-screen mission UI shown when the alarm fires
   MainActivity.kt         the alarm/event list + streak/XP header + "add alarm" flow
   AlarmAdapter.kt         RecyclerView adapter for the list
-  RiseUpApp.kt            Application class, applies Material You dynamic color
+  WakeforgeApp.kt            Application class, applies Material You dynamic color
 ```
 
 ## How this was actually verified (read this before assuming it's untested)

@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy

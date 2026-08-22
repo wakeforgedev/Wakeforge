@@ -1,4 +1,4 @@
-package com.buddy.riseup
+package com.buddy.wakeforge
 
 import android.app.AlarmManager
 import android.app.PendingIntent

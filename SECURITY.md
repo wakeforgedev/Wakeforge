@@ -1,11 +1,11 @@
-# RiseUp Security Notes
+# Wakeforge Security Notes
 
 ## What "end-to-end encryption" actually means, and why it doesn't apply yet
 
 End-to-end encryption (E2EE) is a *client-server* concept: it describes data encrypted on
 one device so that only another intended device can decrypt it — critically, so that the
 server relaying it in between can't read it either (this is how Signal/WhatsApp messages
-work). **RiseUp has no server.** There is nothing in the middle to encrypt data *against*.
+work). **Wakeforge has no server.** There is nothing in the middle to encrypt data *against*.
 Claiming "E2EE" for a fully local app would be a meaningless label, so instead this build
 does the thing that's actually real for a local-only app: strong **encryption at rest**,
 plus removing the network capability entirely so there's no transmission path to secure
@@ -24,7 +24,7 @@ attack surface for interception, zero possibility of a server-side leak, because
 no server and no wire. This is the single strongest thing done here, and it's free.
 
 **2. The local database is encrypted at rest (SQLCipher, AES-256).**
-Previously `riseup.db` was a plain SQLite file — trivially readable by anyone with root
+Previously `wakeforge.db` was a plain SQLite file — trivially readable by anyone with root
 access or an unencrypted device backup. It's now opened through SQLCipher
 (`AppDatabase.kt`), so the file on disk is encrypted. Even pulling the raw `.db` file off
 the device gets you ciphertext, not alarm titles or routines.
