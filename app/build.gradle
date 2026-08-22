@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
+}
+
+android {
+    namespace 'com.buddy.riseup'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.buddy.riseup"
+        minSdk 26
+        targetSdk 34
+        versionCode 2
+        versionName "0.2-mvp-secure"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.4'
+
+    // Room for local storage of alarms/events
+    implementation 'androidx.room:room-runtime:2.6.1'
+    implementation 'androidx.room:room-ktx:2.6.1'
+    ksp 'androidx.room:room-compiler:2.6.1'
+
+    // SQLCipher: encrypts the actual database file at rest (AES-256). Without this,
+    // anyone with root or a rooted-device backup can read riseup.db as plain SQLite.
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.4'
+    implementation 'androidx.sqlite:sqlite-ktx:2.4.0'
+
+    // Jetpack Security: stores the SQLCipher passphrase itself encrypted, with the
+    // encryption key held in the device's hardware-backed Android Keystore rather
+    // than anywhere in app code or a plain file.
+    implementation 'androidx.security:security-crypto:1.1.0-alpha06'
+
+    // CameraX: powers the timed Camera mission (see AlarmActivity's camera section).
+    // Frames are analyzed in memory only for motion — never saved, never uploaded
+    // (there's still no INTERNET permission at all) — see SECURITY.md.
+    implementation 'androidx.camera:camera-core:1.3.4'
+    implementation 'androidx.camera:camera-camera2:1.3.4'
+    implementation 'androidx.camera:camera-lifecycle:1.3.4'
+    implementation 'androidx.camera:camera-view:1.3.4'
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
+}

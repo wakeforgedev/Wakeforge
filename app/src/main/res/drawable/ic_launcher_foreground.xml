@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple bell/alarm glyph placeholder — swap for real branding before launch -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 C40,26 30,37 30,50 L30,64 L24,72 L84,72 L78,64 L78,50 C78,37 68,26 54,26 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M46,78 C46,84 50,88 54,88 C58,88 62,84 62,78 Z" />
+</vector>

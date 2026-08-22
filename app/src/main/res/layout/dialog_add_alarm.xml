@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:hint="@string/title_hint"
+        app:boxCornerRadiusTopStart="14dp"
+        app:boxCornerRadiusTopEnd="14dp"
+        app:boxCornerRadiusBottomStart="14dp"
+        app:boxCornerRadiusBottomEnd="14dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pickTimeButton"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cornerRadius="14dp"
+        android:text="Pick time: 07:00" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="@string/category"
+        android:textStyle="bold"
+        android:textSize="12sp" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/categoryGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/radioStudent"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11.5sp"
+            android:checked="true"
+            android:text="📚 Student" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/radioGym"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11.5sp"
+            android:text="💪 Gym" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/radioGeneral"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11.5sp"
+            android:text="⭐ General" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="@string/mission"
+        android:textStyle="bold"
+        android:textSize="12sp" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/missionGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/radioMath"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11.5sp"
+            android:checked="true"
+            android:text="➕ Math" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/radioShake"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11.5sp"
+            android:text="📳 Shake" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/radioCamera"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="11.5sp"
+            android:text="🎥 Camera" />
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <!-- Only relevant when Camera is selected — how long the camera stays open
+         watching for movement before it gives up and falls back to a Math
+         mission (see AlarmActivity). This directly answers "how long should
+         the camera stay on." -->
+    <LinearLayout
+        android:id="@+id/cameraDurationGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_pill_neutral"
+        android:padding="14dp"
+        android:layout_marginTop="14dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cameraDurationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="12sp" />
+
+        <SeekBar
+            android:id="@+id/cameraDurationSeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:max="6"
+            android:progress="2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_duration_hint"
+            android:textSize="11sp"
+            android:textColor="@color/text_muted" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="@string/difficulty"
+        android:textStyle="bold"
+        android:textSize="12sp" />
+
+    <SeekBar
+        android:id="@+id/difficultySeek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="2"
+        android:progress="0" />
+
+</LinearLayout>
+</ScrollView>

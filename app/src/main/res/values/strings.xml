@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">RiseUp</string>
+    <string name="add_alarm">Add alarm</string>
+    <string name="title_hint">What\'s this for? (e.g. Leg day, French vocab)</string>
+    <string name="category">Category</string>
+    <string name="mission">Wake-up mission</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="dismiss_alarm">Complete the mission to stop the alarm</string>
+    <string name="submit">Submit</string>
+    <string name="wrong_answer">Not quite — try again</string>
+    <string name="shake_progress">Shake your phone: %1$d / %2$d</string>
+    <string name="no_alarms_yet">No alarms yet. Tap + to add one for a class, workout, or routine.</string>
+    <string name="streak_label">🔥 %1$d-day streak</string>
+    <string name="xp_label">⭐ %1$d XP</string>
+    <string name="camera_duration_label">Camera stays open for: %1$s</string>
+    <string name="camera_duration_hint">If no movement is confirmed in time, it switches to a quick math check instead of leaving you stuck.</string>
+    <string name="camera_permission_needed">Camera mission needs camera access — pick a different mission, or allow it in Settings.</string>
+    <string name="camera_instruction">Move around in front of the camera to confirm you\'re up</string>
+    <string name="camera_time_remaining">Time left: %1$s</string>
+    <string name="camera_timeout_fallback">Camera check timed out — solve this instead</string>
+    <string name="delete_alarm">Delete alarm</string>
+</resources>

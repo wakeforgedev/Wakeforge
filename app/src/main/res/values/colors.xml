@@ -1,0 +1,30 @@
+<resources>
+    <color name="brand_primary">#2F6FED</color>
+    <color name="brand_primary_dark">#1F4FBF</color>
+    <color name="alarm_background">#12141A</color>
+    <color name="text_on_dark">#FFFFFF</color>
+    <color name="student_tint">#2F6FED</color>
+    <color name="gym_tint">#E8583C</color>
+    <color name="general_tint">#4CAF80</color>
+
+    <!-- Light tint backgrounds for the category icon badges in the list/dialog —
+         gives each category a soft, modern "pill" look instead of a bare dot. -->
+    <color name="student_tint_bg">#E7EEFD</color>
+    <color name="gym_tint_bg">#FDEAE4</color>
+    <color name="general_tint_bg">#E7F5EE</color>
+
+    <!-- Category gradient stops for the mission screen — one distinct mood per category -->
+    <color name="gradient_student_start">#2F6FED</color>
+    <color name="gradient_student_end">#7B2FF7</color>
+    <color name="gradient_gym_start">#FF5F3C</color>
+    <color name="gradient_gym_end">#FFB020</color>
+    <color name="gradient_general_start">#14B88A</color>
+    <color name="gradient_general_end">#0E9F8E</color>
+
+    <color name="streak_flame">#FF8A3D</color>
+    <color name="xp_gold">#FFC94A</color>
+
+    <color name="text_muted">#6B7280</color>
+    <color name="surface_soft">#F4F5F9</color>
+    <color name="danger">#E8583C</color>
+</resources>
