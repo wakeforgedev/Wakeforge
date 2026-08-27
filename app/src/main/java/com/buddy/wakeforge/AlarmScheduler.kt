@@ -24,6 +24,7 @@ object AlarmScheduler {
     const val EXTRA_MISSION = "extra_mission"
     const val EXTRA_DIFFICULTY = "extra_difficulty"
     const val EXTRA_CAMERA_DURATION_MINUTES = "extra_camera_duration_minutes"
+    const val EXTRA_RINGTONE_URI = "extra_ringtone_uri"
 
     fun canScheduleExactAlarms(context: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= 31) {
@@ -59,6 +60,7 @@ object AlarmScheduler {
             putExtra(EXTRA_MISSION, event.missionType.name)
             putExtra(EXTRA_DIFFICULTY, event.difficulty)
             putExtra(EXTRA_CAMERA_DURATION_MINUTES, event.cameraDurationMinutes)
+            putExtra(EXTRA_RINGTONE_URI, event.ringtoneUri)
         }
         return PendingIntent.getBroadcast(
             context, event.id, intent,

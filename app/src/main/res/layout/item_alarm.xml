@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="6dp"
+    android:clickable="true"
+    android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="20dp"
     app:cardElevation="2dp"
@@ -82,6 +84,20 @@
             app:trackTint="@color/student_tint_bg"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/editText"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_pill_neutral"
+            android:gravity="center"
+            android:text="✏️"
+            android:textSize="14sp"
+            android:contentDescription="@string/edit_alarm"
+            app:layout_constraintTop_toBottomOf="@id/enabledSwitch"
+            app:layout_constraintEnd_toStartOf="@id/deleteText" />
 
         <TextView
             android:id="@+id/deleteText"

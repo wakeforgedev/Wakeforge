@@ -8,7 +8,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:paddingHorizontal="24dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="8dp">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -27,22 +29,41 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Time is the single most important thing in this dialog, so it gets
+         a hero treatment: its own labeled section and a big, filled,
+         centered button rather than competing visually with everything
+         else the way a plain outlined button did before. -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/time"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:letterSpacing="0.04"
+        android:textColor="@color/text_muted" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pickTimeButton"
-        style="@style/Widget.Material3.Button.OutlinedButton"
+        style="@style/Widget.Material3.Button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cornerRadius="14dp"
-        android:text="Pick time: 07:00" />
+        android:layout_height="64dp"
+        android:layout_marginTop="8dp"
+        app:cornerRadius="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.02"
+        android:text="07:00" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="24dp"
         android:text="@string/category"
         android:textStyle="bold"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:letterSpacing="0.04"
+        android:textColor="@color/text_muted" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/categoryGroup"
@@ -56,7 +77,7 @@
             android:id="@+id/radioStudent"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:textSize="11.5sp"
             android:checked="true"
@@ -66,7 +87,7 @@
             android:id="@+id/radioGym"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:textSize="11.5sp"
             android:text="💪 Gym" />
@@ -75,7 +96,7 @@
             android:id="@+id/radioGeneral"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:textSize="11.5sp"
             android:text="⭐ General" />
@@ -84,10 +105,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="24dp"
         android:text="@string/mission"
         android:textStyle="bold"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:letterSpacing="0.04"
+        android:textColor="@color/text_muted" />
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/missionGroup"
@@ -101,7 +124,7 @@
             android:id="@+id/radioMath"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:textSize="11.5sp"
             android:checked="true"
@@ -111,7 +134,7 @@
             android:id="@+id/radioShake"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:textSize="11.5sp"
             android:text="📳 Shake" />
@@ -120,7 +143,7 @@
             android:id="@+id/radioCamera"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:textSize="11.5sp"
             android:text="🎥 Camera" />
@@ -163,18 +186,61 @@
             android:textColor="@color/text_muted" />
     </LinearLayout>
 
+    <!-- Per-alarm sound: each alarm remembers its own pick (or falls back to
+         the device default), stored on AlarmEvent.ringtoneUri. -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="@string/difficulty"
+        android:layout_marginTop="24dp"
+        android:text="@string/alarm_sound"
         android:textStyle="bold"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:letterSpacing="0.04"
+        android:textColor="@color/text_muted" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pickSoundButton"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cornerRadius="14dp"
+        app:icon="@android:drawable/ic_lock_silent_mode_off"
+        app:iconGravity="textStart"
+        android:textSize="13sp"
+        android:text="@string/default_alarm_sound" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/difficulty"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:letterSpacing="0.04"
+            android:textColor="@color/text_muted" />
+
+        <TextView
+            android:id="@+id/difficultyLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/brand_primary"
+            android:text="@string/difficulty_easy" />
+    </LinearLayout>
 
     <SeekBar
         android:id="@+id/difficultySeek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:max="2"
         android:progress="0" />
 

@@ -11,7 +11,8 @@ import java.util.Locale
 
 class AlarmAdapter(
     private val onToggle: (AlarmEvent, Boolean) -> Unit,
-    private val onDelete: (AlarmEvent) -> Unit
+    private val onDelete: (AlarmEvent) -> Unit,
+    private val onEdit: (AlarmEvent) -> Unit
 ) : ListAdapter<AlarmEvent, AlarmAdapter.VH>(DIFF) {
 
     private val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
@@ -50,6 +51,10 @@ class AlarmAdapter(
         }
 
         holder.binding.deleteText.setOnClickListener { onDelete(event) }
+        holder.binding.editText.setOnClickListener { onEdit(event) }
+        // Tapping anywhere else on the card also opens edit — the pencil icon
+        // is there for discoverability, this is for convenience.
+        holder.itemView.setOnClickListener { onEdit(event) }
     }
 
     companion object {

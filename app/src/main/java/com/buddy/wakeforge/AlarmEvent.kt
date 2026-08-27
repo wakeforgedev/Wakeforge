@@ -39,5 +39,12 @@ data class AlarmEvent(
      * is allowed to stay open before it gives up and falls back to Math.
      * User-configurable in the add-alarm dialog (1 / 5 / 10 / 15 minutes).
      */
-    val cameraDurationMinutes: Int = 10
+    val cameraDurationMinutes: Int = 10,
+    /**
+     * String form of a content:// / android.resource:// Uri picked via
+     * RingtoneManager.ACTION_RINGTONE_PICKER in the add/edit dialog. Null
+     * means "use the device's default alarm sound" — each alarm can have
+     * its own, distinct from every other alarm's.
+     */
+    val ringtoneUri: String? = null
 )

@@ -9,7 +9,7 @@ import net.sqlcipher.database.SupportFactory
 
 @Database(
     entities = [AlarmEvent::class, MissionLog::class],
-    version = 3, // bumped for AlarmEvent.cameraDurationMinutes — see fallbackToDestructiveMigration below
+    version = 4, // bumped for AlarmEvent.ringtoneUri — see fallbackToDestructiveMigration below
     exportSchema = false
 )
 @TypeConverters(Converters::class)

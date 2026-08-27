@@ -33,7 +33,22 @@ class AlarmRingService : Service() {
         var isRinging = false
             private set
 
-        fun stopRinging(context: Context) {
+        // Which alarm's mission is currently on screen / ringing, if any.
+        // Lets us tell "stop because THIS alarm was handled/deleted" apart
+        // from "stop some other alarm that happens to be ringing right now."
+        private var currentAlarmId: Int? = null
+
+        /**
+         * Stops the ringing service.
+         *
+         * [alarmId] is optional: pass it when the caller only wants to stop a
+         * *specific* alarm (e.g. deleting alarm #2 from the list should never
+         * silence alarm #5 if #5 happens to be the one actually ringing right
+         * now). Leave it null when the caller is already inside that alarm's
+         * own mission screen and unconditionally means "stop me."
+         */
+        fun stopRinging(context: Context, alarmId: Int? = null) {
+            if (alarmId != null && currentAlarmId != null && alarmId != currentAlarmId) return
             context.stopService(Intent(context, AlarmRingService::class.java))
         }
     }
@@ -46,6 +61,8 @@ class AlarmRingService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val alarmId = intent?.getIntExtra(AlarmScheduler.EXTRA_ALARM_ID, 0) ?: 0
         val title = intent?.getStringExtra(AlarmScheduler.EXTRA_TITLE) ?: "Alarm"
+        val ringtoneUri = intent?.getStringExtra(AlarmScheduler.EXTRA_RINGTONE_URI)
+        currentAlarmId = alarmId
 
         val fullScreenIntent = Intent(this, AlarmActivity::class.java).apply {
             // Explicit "this." matters here — this lambda's enclosing function
@@ -72,29 +89,23 @@ class AlarmRingService : Service() {
             .build()
 
         startForeground(NOTIFICATION_ID, notification)
-        startRingingAndVibrating()
+        startRingingAndVibrating(ringtoneUri)
         return START_STICKY
     }
 
-    private fun startRingingAndVibrating() {
+    private fun startRingingAndVibrating(ringtoneUriString: String?) {
         isRinging = true
-        try {
-            val alarmUri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
-                ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-            mediaPlayer = MediaPlayer().apply {
-                setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_ALARM)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .build()
-                )
-                setDataSource(this@AlarmRingService, alarmUri)
-                isLooping = true
-                prepare()
-                start()
-            }
-        } catch (e: Exception) {
-            // Fall back silently to vibration-only if no alarm sound is available.
+        val defaultUri = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_ALARM)
+            ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+        // Per-alarm sound if one was picked for this specific alarm, otherwise
+        // the device's default alarm sound.
+        val customUri = ringtoneUriString?.let { android.net.Uri.parse(it) }
+
+        if (!tryPlay(customUri ?: defaultUri) && customUri != null) {
+            // The saved per-alarm sound may have been uninstalled/removed
+            // (e.g. it pointed at another app's ringtone file) — don't leave
+            // the user with silence, fall back to the device default instead.
+            tryPlay(defaultUri)
         }
 
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -104,6 +115,31 @@ class AlarmRingService : Service() {
         } else {
             @Suppress("DEPRECATION")
             vibrator?.vibrate(pattern, 0)
+        }
+    }
+
+    /** Returns true if playback actually started. Releases and returns false on any failure. */
+    private fun tryPlay(uri: android.net.Uri?): Boolean {
+        if (uri == null) return false
+        return try {
+            mediaPlayer?.release()
+            mediaPlayer = MediaPlayer().apply {
+                setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                        .build()
+                )
+                setDataSource(this@AlarmRingService, uri)
+                isLooping = true
+                prepare()
+                start()
+            }
+            true
+        } catch (e: Exception) {
+            // Fall back silently to vibration-only if no alarm sound is available at all.
+            mediaPlayer = null
+            false
         }
     }
 
@@ -125,6 +161,7 @@ class AlarmRingService : Service() {
 
     override fun onDestroy() {
         isRinging = false
+        currentAlarmId = null
         mediaPlayer?.stop()
         mediaPlayer?.release()
         mediaPlayer = null
