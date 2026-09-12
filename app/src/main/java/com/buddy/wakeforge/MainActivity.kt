@@ -324,8 +324,8 @@ class MainActivity : AppCompatActivity() {
                 val title = dialogBinding.inputTitle.text.toString().ifBlank { "Alarm" }
                 val category = when {
                     dialogBinding.radioGym.isChecked -> Category.GYM
-                    dialogBinding.radioGeneral.isChecked -> Category.GENERAL
-                    else -> Category.STUDENT
+                    dialogBinding.radioStudent.isChecked -> Category.STUDENT
+                    else -> Category.GENERAL
                 }
                 val mission = when {
                     dialogBinding.radioCamera.isChecked -> MissionType.CAMERA_MOTION
