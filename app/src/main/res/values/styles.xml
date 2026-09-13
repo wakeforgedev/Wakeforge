@@ -6,7 +6,7 @@
          this directly replaces the old MaterialButtonToggleGroup styling
          where the "selected" state was too subtle to notice at a glance. -->
     <style name="Widget.Wakeforge.Chip" parent="Widget.Material3.Chip.Filter">
-        <item name="checkable">true</item>
+        <item name="android:checkable">true</item>
         <item name="checkedIconVisible">false</item>
         <item name="chipStrokeWidth">1.5dp</item>
         <item name="chipStrokeColor">@color/csl_chip_stroke</item>
