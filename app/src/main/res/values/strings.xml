@@ -29,4 +29,21 @@
     <string name="difficulty_easy">Easy</string>
     <string name="difficulty_medium">Medium</string>
     <string name="difficulty_hard">Hard</string>
+
+    <string name="category_student">Student</string>
+    <string name="category_gym">Gym</string>
+    <string name="category_general">General</string>
+    <string name="category_office">Office</string>
+    <string name="mission_math">Math</string>
+    <string name="mission_shake">Shake</string>
+    <string name="mission_camera">Camera</string>
+
+    <string name="nav_alarms">Alarms</string>
+    <string name="nav_history">History</string>
+    <string name="history_title">History</string>
+    <string name="history_completed">Completed</string>
+    <string name="history_missed">Missed</string>
+    <string name="history_no_alarms_that_day">No alarms that day</string>
+    <string name="history_solved_in">Solved in %1$s</string>
+    <string name="history_not_completed">Not completed</string>
 </resources>

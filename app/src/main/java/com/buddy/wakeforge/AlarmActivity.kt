@@ -92,6 +92,7 @@ class AlarmActivity : AppCompatActivity() {
             Category.STUDENT -> R.drawable.gradient_student to "📚"
             Category.GYM -> R.drawable.gradient_gym to "💪"
             Category.GENERAL -> R.drawable.gradient_general to "⭐"
+            Category.OFFICE -> R.drawable.gradient_office to "💼"
         }
         binding.root.background = ContextCompat.getDrawable(this, gradientRes)
         binding.categoryWatermark.text = watermarkEmoji
@@ -342,13 +343,31 @@ class AlarmActivity : AppCompatActivity() {
     private fun logCompletionForStreakAndXp() {
         val xp = StreakCalculator.xpForDifficulty(difficulty)
         lifecycleScope.launch {
-            AppDatabase.get(applicationContext).missionLogDao().insert(
-                MissionLog(
-                    alarmEventId = alarmId,
-                    completedAtMillis = System.currentTimeMillis(),
-                    xpEarned = xp
+            val dao = AppDatabase.get(applicationContext).missionLogDao()
+            // Normally there's an open (fired-but-not-completed) row AlarmRingService
+            // created the moment this alarm started ringing — mark that one done rather
+            // than inserting a second row, so History doesn't double-count this alarm.
+            val open = dao.getLatestOpenLog(alarmId)
+            if (open != null) {
+                dao.update(
+                    open.copy(
+                        completed = true,
+                        completedAtMillis = System.currentTimeMillis(),
+                        xpEarned = xp
+                    )
                 )
-            )
+            } else {
+                dao.insert(
+                    MissionLog(
+                        alarmEventId = alarmId,
+                        alarmTitle = binding.alarmTitle.text?.toString() ?: "Alarm",
+                        scheduledAtMillis = System.currentTimeMillis(),
+                        completedAtMillis = System.currentTimeMillis(),
+                        completed = true,
+                        xpEarned = xp
+                    )
+                )
+            }
         }
     }
 

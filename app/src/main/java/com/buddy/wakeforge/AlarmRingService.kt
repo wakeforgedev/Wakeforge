@@ -14,6 +14,11 @@ import android.os.IBinder
 import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.app.NotificationCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 /**
  * Foreground service that owns the actual "ringing" (sound + vibration) for
@@ -26,6 +31,7 @@ class AlarmRingService : Service() {
 
     private var mediaPlayer: MediaPlayer? = null
     private var vibrator: Vibrator? = null
+    private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     companion object {
         const val CHANNEL_ID = "wakeforge_alarm_channel"
@@ -63,6 +69,20 @@ class AlarmRingService : Service() {
         val title = intent?.getStringExtra(AlarmScheduler.EXTRA_TITLE) ?: "Alarm"
         val ringtoneUri = intent?.getStringExtra(AlarmScheduler.EXTRA_RINGTONE_URI)
         currentAlarmId = alarmId
+
+        // Log "this alarm rang" the moment it rings, not just on success —
+        // this is what makes a History screen able to tell "missed" apart
+        // from "never scheduled." AlarmActivity marks this same row
+        // completed once the mission is solved.
+        serviceScope.launch {
+            AppDatabase.get(applicationContext).missionLogDao().insert(
+                MissionLog(
+                    alarmEventId = alarmId,
+                    alarmTitle = title,
+                    scheduledAtMillis = System.currentTimeMillis()
+                )
+            )
+        }
 
         val fullScreenIntent = Intent(this, AlarmActivity::class.java).apply {
             // Explicit "this." matters here — this lambda's enclosing function
@@ -166,6 +186,7 @@ class AlarmRingService : Service() {
         mediaPlayer?.release()
         mediaPlayer = null
         vibrator?.cancel()
+        serviceScope.cancel()
         super.onDestroy()
     }
 

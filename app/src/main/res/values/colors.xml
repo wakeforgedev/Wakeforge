@@ -3,15 +3,24 @@
     <color name="brand_primary_dark">#1F4FBF</color>
     <color name="alarm_background">#12141A</color>
     <color name="text_on_dark">#FFFFFF</color>
+
+    <!-- Unified text colors — the list row and dialog previously used two
+         slightly different hardcoded darks (#111318 and #1A1C22) with no
+         shared token. One pair, used everywhere from now on. -->
+    <color name="text_primary">#14161C</color>
+    <color name="text_muted">#6B7280</color>
+
     <color name="student_tint">#2F6FED</color>
     <color name="gym_tint">#E8583C</color>
-    <color name="general_tint">#4CAF80</color>
+    <color name="general_tint">#14B88A</color>
+    <color name="office_tint">#6D5AE0</color>
 
     <!-- Light tint backgrounds for the category icon badges in the list/dialog —
          gives each category a soft, modern "pill" look instead of a bare dot. -->
     <color name="student_tint_bg">#E7EEFD</color>
     <color name="gym_tint_bg">#FDEAE4</color>
     <color name="general_tint_bg">#E7F5EE</color>
+    <color name="office_tint_bg">#ECE9FB</color>
 
     <!-- Category gradient stops for the mission screen — one distinct mood per category -->
     <color name="gradient_student_start">#2F6FED</color>
@@ -20,11 +29,19 @@
     <color name="gradient_gym_end">#FFB020</color>
     <color name="gradient_general_start">#14B88A</color>
     <color name="gradient_general_end">#0E9F8E</color>
+    <color name="gradient_office_start">#6D5AE0</color>
+    <color name="gradient_office_end">#3E3AA8</color>
 
     <color name="streak_flame">#FF8A3D</color>
+    <color name="streak_flame_bg">#FFF3EA</color>
+    <color name="streak_flame_text">#B85B1E</color>
     <color name="xp_gold">#FFC94A</color>
+    <color name="xp_gold_bg">#FFF8E1</color>
+    <color name="xp_gold_text">#9A7B00</color>
 
-    <color name="text_muted">#6B7280</color>
-    <color name="surface_soft">#F4F5F9</color>
+    <color name="surface_soft">#F5F6FA</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="line_soft">#E3E5EC</color>
     <color name="danger">#E8583C</color>
+    <color name="completed_green">#14B88A</color>
 </resources>

@@ -8,6 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/surface_card"
     app:cardCornerRadius="20dp"
     app:cardElevation="2dp"
     app:strokeWidth="0dp">
@@ -17,9 +18,10 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Category icon badge replaces the old plain color dot — a soft
-             tinted circle with an emoji glyph, resolved per-category in
-             AlarmAdapter (bg_badge_* + the emoji for that category). -->
+        <!-- Category badge: a soft tinted circle with a small line-icon,
+             resolved per-category in AlarmAdapter (bg_badge_* + ic_cat_*,
+             tinted to that category's accent). Replaces the old emoji glyph,
+             which rendered inconsistently across phone brands/fonts. -->
         <FrameLayout
             android:id="@+id/categoryBadge"
             android:layout_width="44dp"
@@ -28,13 +30,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/categoryEmoji"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/categoryIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:textSize="20sp"
-                android:text="📚" />
+                android:src="@drawable/ic_cat_student"
+                android:importantForAccessibility="no" />
         </FrameLayout>
 
         <TextView
@@ -43,7 +45,7 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="#111318"
+            android:textColor="@color/text_primary"
             app:layout_constraintTop_toTopOf="@id/categoryBadge"
             app:layout_constraintBottom_toBottomOf="@id/categoryBadge"
             app:layout_constraintStart_toEndOf="@id/categoryBadge"
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#1A1C22"
+            android:textColor="@color/text_primary"
             android:maxLines="1"
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@id/categoryBadge"
@@ -85,29 +87,29 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/editText"
+        <ImageView
+            android:id="@+id/editIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:padding="8dp"
             android:background="@drawable/bg_pill_neutral"
-            android:gravity="center"
-            android:text="✏️"
-            android:textSize="14sp"
+            android:src="@drawable/ic_action_edit"
+            app:tint="@color/text_muted"
             android:contentDescription="@string/edit_alarm"
             app:layout_constraintTop_toBottomOf="@id/enabledSwitch"
-            app:layout_constraintEnd_toStartOf="@id/deleteText" />
+            app:layout_constraintEnd_toStartOf="@id/deleteIcon" />
 
-        <TextView
-            android:id="@+id/deleteText"
+        <ImageView
+            android:id="@+id/deleteIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginTop="8dp"
+            android:padding="8dp"
             android:background="@drawable/bg_pill_neutral"
-            android:gravity="center"
-            android:text="🗑"
-            android:textSize="14sp"
+            android:src="@drawable/ic_action_delete"
+            app:tint="@color/text_muted"
             android:contentDescription="@string/delete_alarm"
             app:layout_constraintTop_toBottomOf="@id/enabledSwitch"
             app:layout_constraintEnd_toEndOf="parent" />

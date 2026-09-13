@@ -2,6 +2,7 @@ package com.buddy.wakeforge
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@ class AlarmAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val event = getItem(position)
+        val context = holder.itemView.context
         holder.binding.timeText.text = timeFormat.format(event.timeInMillis)
         holder.binding.title.text = event.title
         val categoryLabel = event.category.name.lowercase().replaceFirstChar { it.uppercase() }
@@ -36,13 +38,15 @@ class AlarmAdapter(
         }
         holder.binding.missionText.text = "$categoryLabel · $missionLabel mission"
 
-        val (badgeBg, emoji) = when (event.category) {
-            Category.STUDENT -> R.drawable.bg_badge_student to "📚"
-            Category.GYM -> R.drawable.bg_badge_gym to "💪"
-            Category.GENERAL -> R.drawable.bg_badge_general to "⭐"
+        val (badgeBg, icon, tint) = when (event.category) {
+            Category.STUDENT -> Triple(R.drawable.bg_badge_student, R.drawable.ic_cat_student, R.color.student_tint)
+            Category.GYM -> Triple(R.drawable.bg_badge_gym, R.drawable.ic_cat_gym, R.color.gym_tint)
+            Category.GENERAL -> Triple(R.drawable.bg_badge_general, R.drawable.ic_cat_general, R.color.general_tint)
+            Category.OFFICE -> Triple(R.drawable.bg_badge_office, R.drawable.ic_cat_office, R.color.office_tint)
         }
         holder.binding.categoryBadge.setBackgroundResource(badgeBg)
-        holder.binding.categoryEmoji.text = emoji
+        holder.binding.categoryIcon.setImageResource(icon)
+        holder.binding.categoryIcon.imageTintList = ContextCompat.getColorStateList(context, tint)
 
         holder.binding.enabledSwitch.setOnCheckedChangeListener(null)
         holder.binding.enabledSwitch.isChecked = event.isEnabled
@@ -50,8 +54,8 @@ class AlarmAdapter(
             onToggle(event, checked)
         }
 
-        holder.binding.deleteText.setOnClickListener { onDelete(event) }
-        holder.binding.editText.setOnClickListener { onEdit(event) }
+        holder.binding.deleteIcon.setOnClickListener { onDelete(event) }
+        holder.binding.editIcon.setOnClickListener { onEdit(event) }
         // Tapping anywhere else on the card also opens edit — the pencil icon
         // is there for discoverability, this is for convenience.
         holder.itemView.setOnClickListener { onEdit(event) }

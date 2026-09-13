@@ -11,8 +11,9 @@ import java.util.Calendar
 object StreakCalculator {
 
     fun currentStreakDays(logs: List<MissionLog>): Int {
-        if (logs.isEmpty()) return 0
-        val completedDays = logs.map { dayKey(it.completedAtMillis) }.toSortedSet(compareByDescending { it })
+        val completedLogs = logs.filter { it.completed && it.completedAtMillis != null }
+        if (completedLogs.isEmpty()) return 0
+        val completedDays = completedLogs.map { dayKey(it.completedAtMillis!!) }.toSortedSet(compareByDescending { it })
         val today = dayKey(System.currentTimeMillis())
 
         var streak = 0
@@ -29,7 +30,7 @@ object StreakCalculator {
         return streak
     }
 
-    fun totalXp(logs: List<MissionLog>): Int = logs.sumOf { it.xpEarned }
+    fun totalXp(logs: List<MissionLog>): Int = logs.filter { it.completed }.sumOf { it.xpEarned }
 
     fun xpForDifficulty(difficulty: Int): Int = 10 + difficulty * 5
 

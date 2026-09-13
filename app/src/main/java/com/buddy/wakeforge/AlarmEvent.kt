@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
  * (Phase 2+) will drive age-tier presets too. They are stored as plain
  * strings so we can add more categories without a DB migration headache.
  */
-enum class Category { STUDENT, GYM, GENERAL }
+enum class Category { STUDENT, GYM, GENERAL, OFFICE }
 
 /**
  * A mission is the "unique stopping style."

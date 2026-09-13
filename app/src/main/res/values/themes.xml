@@ -1,16 +1,48 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Wakeforge" parent="Theme.Material3.DayNight.NoActionBar">
+
+    <!-- Deliberately Theme.Material3.Light, not .DayNight — the whole
+         Wakeforge palette was designed as one fixed light theme (see the UI
+         refresh: surface_soft background, text_primary/text_muted, per-
+         category colors). DayNight would pull in Material3's own dark-mode
+         defaults for every color role we don't explicitly override the
+         moment a phone's system theme is dark, which is a second, separate
+         way the app's colors could end up looking "wrong" beyond the
+         dynamic-color issue. One deliberate look, on every device,
+         regardless of system theme — matching the "no dynamic color either"
+         decision in WakeforgeApp.kt. -->
+    <style name="Theme.Wakeforge" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/brand_primary</item>
         <item name="colorOnPrimary">@color/text_on_dark</item>
         <item name="colorSecondary">@color/gym_tint</item>
         <item name="colorTertiary">@color/general_tint</item>
-        <!-- Material You (DynamicColors, see WakeforgeApp.kt) overrides these on Android 12+
-             with colors derived from the user's wallpaper; this is just the static fallback. -->
+
+        <item name="android:colorBackground">@color/surface_soft</item>
+        <item name="colorSurface">@color/surface_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_muted</item>
+        <item name="colorOutline">@color/line_soft</item>
+
+        <!-- Status bar / nav bar now match the app instead of being left at
+             whatever the system default is — previously unset entirely,
+             which is what caused them to visibly clash with the content
+             underneath ("setting nav bar" feedback). Light background here,
+             so dark icons. -->
+        <item name="android:statusBarColor">@color/surface_soft</item>
+        <item name="android:navigationBarColor">@color/surface_soft</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 
-    <style name="Theme.Wakeforge.Alarm" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Wakeforge.Alarm" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowBackground">@color/alarm_background</item>
         <item name="colorPrimary">@color/brand_primary</item>
         <item name="android:windowIsTranslucent">false</item>
+
+        <!-- Dark ringing screen — status/nav bar match it, with light icons. -->
+        <item name="android:statusBarColor">@color/alarm_background</item>
+        <item name="android:navigationBarColor">@color/alarm_background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
     </style>
+
 </resources>

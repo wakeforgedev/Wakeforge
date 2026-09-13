@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Shared look for every category/mission choice chip. Selected vs
+         unselected is deliberately a big, unmissable difference (solid
+         color fill + white text/icon vs. plain outline + muted text) —
+         this directly replaces the old MaterialButtonToggleGroup styling
+         where the "selected" state was too subtle to notice at a glance. -->
+    <style name="Widget.Wakeforge.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="checkable">true</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipStrokeWidth">1.5dp</item>
+        <item name="chipStrokeColor">@color/csl_chip_stroke</item>
+        <item name="chipIconTint">@color/csl_chip_content</item>
+        <item name="chipIconSize">16dp</item>
+        <item name="android:textColor">@color/csl_chip_content</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="chipCornerRadius">13dp</item>
+        <item name="chipMinHeight">44dp</item>
+        <item name="rippleColor">#22FFFFFF</item>
+    </style>
+
+</resources>

@@ -74,6 +74,9 @@ class MainActivity : AppCompatActivity() {
         binding.alarmList.adapter = adapter
 
         binding.fabAdd.setOnClickListener { showAddAlarmDialog() }
+        binding.navHistory.setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
 
         lifecycleScope.launch {
             dao.observeAll().collect { events ->
@@ -251,6 +254,7 @@ class MainActivity : AppCompatActivity() {
                     Category.GYM -> R.id.radioGym
                     Category.GENERAL -> R.id.radioGeneral
                     Category.STUDENT -> R.id.radioStudent
+                    Category.OFFICE -> R.id.radioOffice
                 }
             )
             dialogBinding.missionGroup.check(
@@ -271,13 +275,9 @@ class MainActivity : AppCompatActivity() {
         updateCameraDurationLabel(CAMERA_DURATION_OPTIONS_MIN[dialogBinding.cameraDurationSeek.progress])
 
         // Category picks a sensible default mission, but the user can override it.
-        // MaterialButtonToggleGroup's listener fires for both the button being
-        // unchecked and the one becoming checked, so filter to isChecked==true
-        // or this would double-fire on every tap. (Attached after pre-fill —
-        // see comment above.)
-        dialogBinding.categoryGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (!isChecked) return@addOnButtonCheckedListener
-            when (checkedId) {
+        // (Attached after pre-fill — see comment above.)
+        dialogBinding.categoryGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+            when (checkedIds.firstOrNull()) {
                 R.id.radioGym -> dialogBinding.missionGroup.check(R.id.radioShake)
                 else -> dialogBinding.missionGroup.check(R.id.radioMath)
             }
@@ -303,9 +303,8 @@ class MainActivity : AppCompatActivity() {
         // Selecting Camera reveals the "how long should it stay open" setting,
         // and requests camera permission right away rather than waiting until
         // an alarm fires (a much better moment to ask than over the lock screen).
-        dialogBinding.missionGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (!isChecked) return@addOnButtonCheckedListener
-            if (checkedId == R.id.radioCamera) {
+        dialogBinding.missionGroup.setOnCheckedStateChangeListener { _, checkedIds ->
+            if (checkedIds.firstOrNull() == R.id.radioCamera) {
                 dialogBinding.cameraDurationGroup.visibility = android.view.View.VISIBLE
                 if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED
@@ -325,6 +324,7 @@ class MainActivity : AppCompatActivity() {
                 val category = when {
                     dialogBinding.radioGym.isChecked -> Category.GYM
                     dialogBinding.radioStudent.isChecked -> Category.STUDENT
+                    dialogBinding.radioOffice.isChecked -> Category.OFFICE
                     else -> Category.GENERAL
                 }
                 val mission = when {

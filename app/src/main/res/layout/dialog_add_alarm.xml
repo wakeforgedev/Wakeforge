@@ -65,93 +65,93 @@
         android:letterSpacing="0.04"
         android:textColor="@color/text_muted" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <!-- ChipGroup instead of MaterialButtonToggleGroup: it wraps onto a
+         second line on its own, so a 4th category (Office) doesn't have to
+         squeeze into one cramped row — and the selected chip is unmissable
+         (solid category color + white text/icon) instead of a subtle
+         outline change. -->
+    <com.google.android.material.chip.ChipGroup
         android:id="@+id/categoryGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:singleSelection="true"
-        app:selectionRequired="true">
+        app:selectionRequired="true"
+        app:chipSpacingHorizontal="8dp">
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/radioStudent"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:textSize="11.5sp"
-            android:text="📚 Student" />
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_cat_student"
+            app:chipBackgroundColor="@color/csl_chip_bg_student"
+            android:text="@string/category_student" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/radioGym"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:textSize="11.5sp"
-            android:text="💪 Gym" />
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_cat_gym"
+            app:chipBackgroundColor="@color/csl_chip_bg_gym"
+            android:text="@string/category_gym" />
 
-        <!-- Default category: General doesn't presume who the user is (student,
-             gym-goer, office worker) — the only one of the four that's a safe
-             assumption for someone who hasn't told the app anything about
-             themselves yet. -->
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.chip.Chip
+            android:id="@+id/radioOffice"
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_cat_office"
+            app:chipBackgroundColor="@color/csl_chip_bg_office"
+            android:text="@string/category_office" />
+
+        <!-- Default category — see MainActivity: General doesn't presume
+             who's setting the alarm, unlike the persona categories. -->
+        <com.google.android.material.chip.Chip
             android:id="@+id/radioGeneral"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:textSize="11.5sp"
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_cat_general"
+            app:chipBackgroundColor="@color/csl_chip_bg_general"
             android:checked="true"
-            android:text="⭐ General" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+            android:text="@string/category_general" />
+    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="22dp"
         android:text="@string/mission"
         android:textStyle="bold"
         android:textSize="12sp"
         android:letterSpacing="0.04"
         android:textColor="@color/text_muted" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <com.google.android.material.chip.ChipGroup
         android:id="@+id/missionGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:singleSelection="true"
-        app:selectionRequired="true">
+        app:selectionRequired="true"
+        app:chipSpacingHorizontal="8dp">
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/radioMath"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:textSize="11.5sp"
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_mission_math"
+            app:chipBackgroundColor="@color/csl_chip_bg_mission"
             android:checked="true"
-            android:text="➕ Math" />
+            android:text="@string/mission_math" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/radioShake"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:textSize="11.5sp"
-            android:text="📳 Shake" />
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_mission_shake"
+            app:chipBackgroundColor="@color/csl_chip_bg_mission"
+            android:text="@string/mission_shake" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.chip.Chip
             android:id="@+id/radioCamera"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:textSize="11.5sp"
-            android:text="🎥 Camera" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+            style="@style/Widget.Wakeforge.Chip"
+            app:chipIcon="@drawable/ic_mission_camera"
+            app:chipBackgroundColor="@color/csl_chip_bg_mission"
+            android:text="@string/mission_camera" />
+    </com.google.android.material.chip.ChipGroup>
 
     <!-- Only relevant when Camera is selected — how long the camera stays open
          watching for movement before it gives up and falls back to a Math
@@ -209,8 +209,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:cornerRadius="14dp"
-        app:icon="@android:drawable/ic_lock_silent_mode_off"
+        app:icon="@drawable/ic_sound"
+        app:iconTint="@color/brand_primary"
         app:iconGravity="textStart"
+        android:textColor="@color/text_primary"
         android:textSize="13sp"
         android:text="@string/default_alarm_sound" />
 
